@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      .on-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .off-button {
+        background-color: rgb(223, 29, 29);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .login-input {
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .login-button {
+        padding: 8px;
+        margin-right: 10px;
+        background-color: rgb(0, 95, 236);
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ButtonSwitch() {
+        const [isButtonOn, setIsButtonOn] = React.useState(true);
+
+        function handleButtonOn(event) {
+          setIsButtonOn(!isButtonOn);
+        }
+        return (
+          <button
+            className={isButtonOn ? "on-button" : "off-button"}
+            onClick={handleButtonOn}
+          >
+            {isButtonOn ? "ON" : "OFF"}
+          </button>
+        );
+      }
+
+      function FormLogin() {
+        const [isShow, setIsShow] = React.useState(false);
+        function showPass() {
+          setIsShow(!isShow);
+        }
+        return (
+          <>
+            <div>
+              <input className="login-input" placeholder="Email" />
+            </div>
+            <div>
+              <input
+                className="login-input"
+                placeholder="Password"
+                type={isShow ? "text" : "password"}
+              />
+              <button onClick={showPass}>Show</button>
+            </div>
+            <button className="login-button">Login</button>
+            <button className="login-button">Sign up</button>
+          </>
+        );
+      }
+
+      function CountApp() {
+        const [count, setCount] = React.useState(0);
+        const buttonRef = React.useRef();
+
+        function increaseCount() {
+          setCount(count + 1);
+        }
+
+        function resetCount() {
+          setCount(0);
+        }
+
+        function autoClick() {
+          setInterval(() => {
+            const buttonElem = buttonRef.current;
+            if (buttonElem) {
+              buttonElem.click();
+            }
+          }, 1000);
+        }
+
+        return (
+          <>
+            <button onClick={increaseCount} ref={buttonRef}>
+              Clicked {count} {count === 1 ? "time" : "times"}
+            </button>
+            <button onClick={resetCount}>Reset</button>
+            <button onClick={autoClick}>Auto Click</button>
+          </>
+        );
+      }
+
+      function App() {
+        const [time, setTime] = React.useState(dayjs().format("HH:mm:ss"));
+
+        React.useEffect(() => {
+          setInterval(() => {
+            setTime(dayjs().format("HH:mm:ss"));
+          }, 1000);
+
+          // Important: make sure to give React.useEffect()
+          // a dependency array of [] so it only runs once!
+        }, []);
+        return (
+          <div>
+            <p>Current time: {time}</p>
+            <ButtonSwitch />
+            <h2>Welcome to my website</h2>
+            <FormLogin />
+            <CountApp />
+          </div>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
