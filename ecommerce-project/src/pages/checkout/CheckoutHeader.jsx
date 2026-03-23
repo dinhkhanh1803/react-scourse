@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import CheckoutPage from "../pages/CheckoutPage";
-import "./checkout-header.css";
+import CheckoutPage from "./CheckoutPage";
+import "./CheckoutHeader.css";
 
 const CheckoutHeader = () => {
   return (
