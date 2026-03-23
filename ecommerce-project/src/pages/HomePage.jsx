@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import "./HomePage.css";
+import CheckmarkIcon from "../assets/images/icons/checkmark.png";
 
 const HomePage = () => {
   return (
@@ -98,7 +99,7 @@ const HomePage = () => {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
+              <img src={CheckmarkIcon} />
               Added
             </div>
 
