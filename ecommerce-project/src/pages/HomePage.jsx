@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <>
       <title>Ecommerce Project</title>
-
+      <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
       <Header />
       <div className="home-page">
         <div className="products-grid">
