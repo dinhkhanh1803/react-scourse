@@ -4,17 +4,12 @@ import CheckmarkIcon from "../assets/images/icons/checkmark.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const HomePage = () => {
+const HomePage = ({ cart }) => {
   const [products, setProduct] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get("api/products").then((response) => {
       setProduct(response.data);
-    });
-
-    axios.get("api/cart-items").then((response) => {
-      setCart(response.data);
     });
   }, []);
 
