@@ -2,15 +2,13 @@ import Header from "../components/Header";
 import "./HomePage.css";
 import CheckmarkIcon from "../assets/images/icons/checkmark.png";
 import { products } from "../data/products.js";
+import axios from "axios";
 
 const HomePage = () => {
-  fetch("http://localhost:3000/api/products")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-    });
+  axios.get("http://localhost:3000/api/products").then((response) => {
+    console.log(response.data);
+  });
+
   return (
     <>
       <title>Ecommerce Project</title>
