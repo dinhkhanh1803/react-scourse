@@ -5,7 +5,13 @@ import CartIcon from "../assets/images/icons/cart-icon.png";
 import SearchIcon from "../assets/images/icons/search-icon.png";
 import LogoWhite from "../assets/images/logo-white.png";
 import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
-const Header = () => {
+const Header = ({ cart }) => {
+  let totalQuality = 0;
+
+  cart.forEach((cartItem) => {
+    totalQuality += cartItem.quantity;
+  });
+
   return (
     <>
       <div className="header">
@@ -31,7 +37,7 @@ const Header = () => {
 
           <NavLink className="cart-link header-link" to="/checkout">
             <img className="cart-icon" src={CartIcon} />
-            <div className="cart-quantity">3</div>
+            <div className="cart-quantity">{totalQuality}</div>
             <div className="cart-text">Cart</div>
           </NavLink>
         </div>
