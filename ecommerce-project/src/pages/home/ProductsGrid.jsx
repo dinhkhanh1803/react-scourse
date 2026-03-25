@@ -1,4 +1,4 @@
-import CheckmarkIcon from "../assets/images/icons/checkmark.png";
+import CheckmarkIcon from "../../assets/images/icons/checkmark.png";
 import { formatMoney } from "../../utils/moneyFormat";
 
 const ProductsGrid = ({ products }) => {
